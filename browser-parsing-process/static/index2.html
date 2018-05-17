@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+  
+</head>
+<body>
+  <div class="container">
+    this is the contnent here.
+  </div>
+  <p>js的下载和执行，影响下面的几点</p>
+  <ul>
+    <li>
+      阻塞DOM的继续解析
+    </li>
+    <li>阻塞后面的脚本执行， 即使添加了async或者是defer属性：原因就是阻塞了后续的DOM解析</li>
+    <li>
+      不会阻塞后面资源的加载，是因为现代浏览器都有预解析的机制
+      <blockquote>
+        WebKit 和 Firefox 都进行了这项优化。在执行脚本时，其他线程会解析文档的其余部分，找出并加载需要通过网络加载的其他资源。通过这种方式，资源可以在并行连接上加载，从而提高总体速度。请注意，预解析器不会修改 DOM 树，而是将这项工作交由主解析器处理；预解析器只会解析外部资源（例如外部脚本、样式表和图片）的引用。
+      </blockquote>
+    </li>
+  </ul>
+  <script src="./common.js"></script> 
+  <script async src="./index.js"></script>
+  <!-- <script async="async" src="./index.js"></script>   -->
+  <div class="box">
+    this is box
+  </div>
+</body>
+<!-- another thread -->
+<!-- <script async="async" src="./index.js"></script> -->
+
+<!--  -->
+</html>

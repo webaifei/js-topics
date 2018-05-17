@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="./index.css">
+  
+</head>
+<body>
+  <div class="container">
+    this is the contnent here.
+  </div>
+  <p>可以通过给下面的index.js添加 async属性（不阻塞DOM解析，启动另外一个线程下载和解析，下载完成之后立即解析执行）来验证下面的两点</p>
+  <ul>
+    <li>css样式文件的下载和解析不会阻塞DOM解析</li>
+    <li>css样式文件的下载和解析会阻塞js（无defer 或者 async属性）的解析执行,但是不会阻塞js的下载（现代浏览器会启动另外一个线程进行与解析，去下载后续的资源，但是不会影响主线程的DOM解析的结果）</li>
+  </ul>
+  <script defer="defer" src="./index.js"></script>
+  <!-- <script async="async" src="./index.js"></script>   -->
+  <div class="box">
+    this is box
+  </div>
+</body>
+<!-- another thread -->
+<!-- <script async="async" src="./index.js"></script> -->
+
+<script src="./common.js"></script> 
+</html>

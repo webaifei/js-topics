@@ -8,7 +8,7 @@ const PORT = 3000 || process.env.PORT;
 const server = http.createServer((req, res) => {
   // route /
   if (req.url === '/') {
-    fs.readFile(path.join(STATIC_PATH, 'index.html'), function (err, data) {
+    fs.readFile(path.join(STATIC_PATH, 'index2.html'), function (err, data) {
       if (err) {
         res.writeHead(404);
         res.end('not found!')
@@ -21,9 +21,12 @@ const server = http.createServer((req, res) => {
         res.writeHead(404);
         res.end('not found!')
       }
+      // 模拟common.js响应返回很晚
       if (req.url.indexOf('common.js') > -1) {
-        res.setHeader('Content-Type', 'application/javascript');
-        res.end(data.toString())
+        setTimeout(() => {
+          res.setHeader('Content-Type', 'application/javascript');
+          res.end(data.toString())
+        }, 3000);
       } else {
         res.setHeader('Content-Type', 'application/javascript');
         res.end(data.toString())

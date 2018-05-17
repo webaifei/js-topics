@@ -8,7 +8,7 @@ const PORT = 3000 || process.env.PORT;
 const server = http.createServer((req, res) => {
   // route /
   if (req.url === '/') {
-    fs.readFile(path.join(STATIC_PATH, 'index.html'), function (err, data) {
+    fs.readFile(path.join(STATIC_PATH, 'index1.html'), function (err, data) {
       if (err) {
         res.writeHead(404);
         res.end('not found!')
@@ -37,8 +37,10 @@ const server = http.createServer((req, res) => {
         res.writeHead(404);
         res.end('not found!')
       }
-      res.setHeader('Content-Type', 'text/css');
-      res.end(data.toString())
+      setTimeout(() => {
+        res.setHeader('Content-Type', 'text/css');
+        res.end(data.toString())
+      }, 1000);
     })
 
   } else {
