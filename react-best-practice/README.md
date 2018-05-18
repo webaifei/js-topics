@@ -1,6 +1,6 @@
 ### react 最佳实践
 
-1. 增加属性类型检测 代码的健壮性
+1. 增加属性类型检测 代码的健壮性
 ```
 import PropTypes from 'prop-types';
 
@@ -14,9 +14,9 @@ YourComponent.defaultProps = {
   name: 'Stranger'
 };
 ```
-3. 使用 react-dev-tool 来检测
+3. 使用 react-dev-tool 来检测
 4. 使用shouldComponentUpdate或者使用PureComponent实现性能优化
-5. 在constructor中绑定this
+5. 在constructor中绑定this
 ```
 // 避免下面的用法
 <a onClick={(e)=>this.clickHandle(e)}>
