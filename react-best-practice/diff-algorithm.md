@@ -1,5 +1,5 @@
 ### diff 算法
-> virtual dom技术 将我们的DOM树在内存中存放了一份JS的对象映射（js本身的执行效率很高，操作DOM的代价昂贵）
+> virtual dom技术 将我们的DOM树在内存中存放了一份JS的对象映射（js本身的执行效率很高，操作DOM的代价昂贵）
 #### 传统的树结构比较
 传统的将一颗树转换成另外一棵树的算法复杂度是O(n^3)(算法实现待研究)，那么我们现在有1000个dom节点的话，就是一亿次计算量
 
@@ -48,26 +48,26 @@
 
 2. DOM Elements Of The Same Type
 ```
-针对同种类型的React DOM 元素，react比对两个元素的属性，找到属性不同的地方进行更新
+针对同种类型的React DOM 元素，react比对两个元素的属性，找到属性不同的地方进行更新
 ```
 3. Component Elements Of The Same Type
 ```
 针对相同类型的组件元素，
 
-默认情况下，使用新的props和state 调用render 生成一颗新树， 然后和之前的树进行递归对比
+默认情况下，使用新的props和state 调用render 生成一颗新树， 然后和之前的树进行递归对比
 
-如果我们重写了shouldComponentUpdate或者是继承了 PureComponent ，那么就会根据作者的意图来选择是否执行render，生成一颗新树进行diff algorithm
+如果我们重写了shouldComponentUpdate或者是继承了 PureComponent ，那么就会根据作者的意图来选择是否执行render，生成一颗新树进行diff algorithm
 ```
-4.  Recursing On Children（递归比较子组件）
+4.  Recursing On Children（递归比较子组件）
 ```
-经过上面3中比较之后，react就会对两棵树的children进行比较
+经过上面3中比较之后，react就会对两棵树的children进行比较
 
 4.1 默认情况下，在递归一个DOM node 的 children的时候，react仅仅是同时遍历两个children的list，找到不同的节点进行对应的操作
   1) 节点类型不同 直接删除原节点 添加新节点
   2) 节点类型相同 属性不同 修改属性
   3) 都相同那就不做修改
 
-对于在children列表非最后的位置插入新节点，可能会有如下的问题：
+对于在children列表非最后的位置插入新节点，可能会有如下的问题：
 <ul>
   <li>Duke</li>
   <li>Villanova</li>
@@ -78,7 +78,7 @@
   <li>Duke</li>
   <li>Villanova</li>
 </ul>
-react在遍历新旧节点list的时候发现 都节点属性都变换了，所以会造成三个节点都被修改一次，并不能准确的知道我们只是在开始的位置插入了一个新的节点（而在dom操作中 这种插入操作又非常的常见）
+react在遍历新旧节点list的时候发现 都节点属性都变换了，所以会造成三个节点都被修改一次，并不能准确的知道我们只是在开始的位置插入了一个新的节点（而在dom操作中 这种插入操作又非常的常见）
 ```
 4.2 未children 添加key属性
 为了解决上面的问题，react支持通过添加key来进行优化
@@ -94,7 +94,7 @@ react在遍历新旧节点list的时候发现 都节点属性都变换了，所
   <li key="Villanova">Villanova</li>
 </ul>
 
-这样，react在遍历children的子元素的时候 可以通过key来确认这个节点到底是否发生了变化
+这样，react在遍历children的子元素的时候 可以通过key来确认这个节点到底是否发生了变化
 
 TIPS: 
 请注意上面的写法，key并不是取数组的索引，因为那样的话，和没有增加key的结果一样，并不会帮助react意识到哪个节点发生了变化，哪些没有
