@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script src="./promise/promise4.js"></script>
+<script>
+  var p = new Promise(function (resovle, reject){
+    // 同步调用也可以执行then中添加的回调
+    setTimeout(() => {
+      resovle(100);
+    }, 1000);
+  })
+  p.then(function (data) { 
+    console.log(data);
+    return new Promise(function (resolve) {
+      setTimeout(function () {
+        resolve(400)
+      }, 300)
+    })
+  }).then(function (data) {
+    console.log(data);
+  }).then(function (data) {
+    console.log(data);
+    
+  })
+
+</script>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script src="./promise/promise2.js"></script>
+<script>
+  var p = new Promise(function (resovle, reject){
+    // 同步调用也可以执行then中添加的回调
+    resovle(100);
+  })
+  p.then(function (data) {
+    console.log(data);
+    return 200;// then回调可以处理参数 传递给后续的回调使用
+  }).then(function (data) {
+    console.log(data);
+  }).then(function (data) {
+    console.log(data);
+    
+  })
+
+</script>
+</html>

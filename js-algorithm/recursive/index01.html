@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+  const toString = Object.prototype.toString;
+  const isObject = function (obj) {
+    return toString.call(obj) === '[object Object]'
+  }
+  /**
+  * 1. 闭包的应用
+  * 2. 函数柯里化
+  */
+  const isArray = (function (){
+
+    const _isArray = typeof Array.isArray === 'function' ? 
+      Array.isArray 
+      : function (obj) {
+        toString.call(obj) === '[object Array]';
+      };
+
+    return function isArray (obj) {
+      return _isArray(obj);
+    }
+  })()
+  /**
+   * 递归实现深拷贝
+   */
+  function deepCopy1(obj) {
+    let res = {};
+    for (let key in obj) {
+      let value = obj[key];
+      if (isObject(value)) {
+        res[key] = deepCopy1(value);
+      } else {
+        res[key] = value;
+      }
+    }
+    return res;
+  }
+
+  function deepCopy2(obj) {
+    let res = {};
+    if(isArray(obj)) {
+      res = []
+    }
+    for (let key in obj) {
+      let value = obj[key];
+      if (isObject(value) || isArray(value)) {
+        res[key] = deepCopy2(value);
+      } else {
+        res[key] = value;
+      }
+    }
+    return res;
+  }
+
+  const obj = {
+    name:'ngnice',
+    age: 10,
+    ala: {
+      arr: [1,2,34,],
+      ss: 1,
+      nice: "sdf"
+    }
+  }
+  console.log(obj, 'origin');
+  
+  const cpObj = deepCopy1(obj);
+  console.log(cpObj);
+  cpObj.ala.arr.push(111)
+  
+</script>
+
+</html>
