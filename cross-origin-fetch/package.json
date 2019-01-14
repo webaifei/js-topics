@@ -1,0 +1,14 @@
+{
+  "name": "cross-origin-fetch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start-a": "node site-a/index.js",
+    "start-b": "node site-b/index.js",
+    "start": "yarn run start-a &  yarn run start-b"
+  },
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

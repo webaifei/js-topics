@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>site-a</title>
+</head>
+<body>
+  <h1>站点A</h1>
+  <p>给站点B发送消息</p>
+  <p><input class="msg" type="text" placeholder="please input msg here"> <button id="btn">send</button></p>
+  <p>收到站点B的消息</p>
+  <p class="content"></p>
+  <p>嵌套iframe</p>
+
+  <iframe src="http://cross-site.com:4000" frameborder="0" width="600" height="500"></iframe>
+</body>
+<script>
+  const btn = document.querySelector("#btn"),
+    msginput = document.querySelector(".msg"),
+    contentBox = document.querySelector(".content");
+  const _window = window.open("http://cross-site.com:4000");
+
+  function send(e) {
+    let msg = msginput.value;
+    _window.postMessage(msg, "http://cross-site.com:4000");
+  }
+  btn.addEventListener("click", send, false);
+  window.addEventListener("message", function (e) {
+    console.log(e);
+    if (e.origin) {
+      console.log(e.data)
+      contentBox.innerHTML = e.data;
+    }
+  }, false);
+</script>
+</html>

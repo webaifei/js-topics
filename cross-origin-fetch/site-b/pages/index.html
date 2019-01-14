@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>site-b</title>
+</head>
+<body>
+  <h1>站点B</h1>
+  <p>给站点A发送消息</p>
+  <p><input class="msg" type="text" placeholder="please input msg here"> <button id="btn">send</button></p>
+  <p>收到站点A的消息</p>
+  <p class="content"></p>
+</body>
+<script>
+const btn = document.querySelector("#btn"),
+      msginput = document.querySelector(".msg"),
+      contentBox = document.querySelector(".content");
+let _window = window.parent == window ? window.opener : window.parent;
+      
+function send(e) {
+  let msg = msginput.value;
+  console.log(window.parent)
+  // 必须使用window.parent 来postMessage
+  _window.postMessage(msg, "http://cross-site.com:3000");
+}
+btn.addEventListener("click", send, false);
+window.addEventListener("message", function (e) {
+  console.log(e.origin);
+  if(e.origin) {
+    console.log(e.data)
+    contentBox.innerHTML = e.data;
+  }
+}, false)
+</script>
+</html>
