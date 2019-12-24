@@ -10,7 +10,9 @@
   
 </body>
 <script>
+  var x;
   var gen = function * (x) {
+    x = x;
     var aa = 1;
     var y = yield (x+1);
     var x = yield (aa+1);
@@ -21,7 +23,18 @@
     // return 'ending';
   }
 
+  // 1. 调用gen generator函数 返回的是一个iterator对象
+  // 2. 不会执行函数体，会初始化参数列表
+  // 所以当前x=11
   var g = gen(11);
+  // 当参数没有提供的时候
+  // 1.参数列表还是默认值
+  var g1 = gen();
+  
+  // console.log(g1.next());
+  // next 接收参数， 作为上一个yield 的
+  console.log(g1.next(22));
+  console.log(g1.next(10));
   // console.log(g.next());// 11+1
   // console.log(g.next(2222));// NaN
   // console.log(g.next());

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+/**
+证明 yield 表达式没有返回值
+*/
+function* gen(x) {
+  var y = yield 1;
+  var a = yield x+1;
+  // 此处能证明yield的返回值 总是undefined
+  console.log(`${yield} 1`);
+  return 2;
+}
+
+// 使用for of 来自动遍历 Generator生成的Iterator对象
+for(let v of gen(1)) {
+  console.log(v);
+}
+
+// 手动调用
+var g = gen(1);
+function run(g) {
+  // 递归next
+  function next() {
+    var ret = g.next();
+    console.log(ret);
+    if(!ret.done) {
+      next()
+    }
+    return ret;
+  }
+  next();
+}
+run(g); 
+
+</script>
+</html>

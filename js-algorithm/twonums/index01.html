@@ -1,0 +1,24 @@
+<script type="text/javascript">
+var twoSum = function(nums, target) {
+    var ret = [];
+    // 遍历nums 
+    for(let i = 0; i<nums.length; i++) {
+        var item = nums[i];
+        var findNum = target-item;
+        // 在数组中查找此元素，存在的话删除并记录下标
+        for(let k = i+1; k < nums.length; k++) {
+            if(nums[k]  == findNum) {
+                ret.push(i);
+                ret.push(k);  
+                // 删除元素
+                nums[k] = null;
+                break;
+            }
+        }
+        
+    }
+    
+    return ret;
+};
+console.log(twoSum([2,7,11,1,2,8,7], 9))
+</script>

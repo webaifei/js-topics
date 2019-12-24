@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+/**
+证明 yield 表达式没有返回值
+*/
+function* foo(x) {
+  var y = 2 * (yield (x + 1));// 执行第二个next的时候 因为yield 没有返回值：2*undefined y的值是NaN
+  var z = yield (y / 3);
+  return (x + y + z);
+}
+
+var a = foo(5);
+console.log(a.next());// Object{value:6, done:false}
+console.log(a.next());// Object{value:NaN, done:false}
+ 
+console.log(a.next());// Object{value:NaN, done:true}
+
+</script>
+</html>

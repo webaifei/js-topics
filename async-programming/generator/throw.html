@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+/**
+Generator 返回的遍历器对象 有一个throw方法
+*/
+function* gen(x) {
+  try {
+    yield setTimeout(() => {
+      console.log('yield 后面跟着的表达式');
+    }, 200);
+    yield "nice one";
+  } catch(err) {
+    console.log("内部捕获", err);
+  }
+  // 无效  generator 返回Iterator对象
+  return 1;
+}
+var g = gen(1);
+try {
+  g.next();
+  // 第一个throw 已经走到完了catch 后面的代码不再执行
+  g.throw(new Error("generator throw an error")) 
+  // 第二个throw 无法被内部捕获
+  // g.throw(new Error("generator throw an error")) 
+  console.log(g.next());
+} catch (error) {
+  console.log("外部捕获", error)
+}
+// g.next();
+
+
+
+
+</script>
+</html>
