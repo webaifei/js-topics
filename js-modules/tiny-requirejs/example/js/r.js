@@ -9,12 +9,14 @@ var interactiveScript;
 var currentlyAddingScript;
 /**
  * 事件订阅发布器
+ * 用来管理依赖加载同步
  */
 function Emitter () {
     this.queue = [];
 }
 
 Emitter.prototype.on = function (type, callback) {
+    // 优先处理后添加的事件
     this.queue.unshift({
         type: type,
         callback: callback,
@@ -45,6 +47,7 @@ var emitter = new Emitter();
 var config = {
     baseUrl: "./js/"
 }
+
 require = function (deps, callback) {
     let id = getCurrentScriptId();
     context[id] = {
@@ -95,7 +98,7 @@ define = function (deps, callback) {
 
 
 }
-init();
+
 
 function init() {
     var scripts = document.getElementsByTagName('script');
@@ -121,6 +124,7 @@ function init() {
  * @param id    依赖module的模块id
  * */
 function load(module, url, id) {
+    // TODO: 缺少脚本加载中的处理
     if (context[module] && context[module].isLoaded) {
         emitter.trigger(module);
     } else {
@@ -210,3 +214,4 @@ function getCurrentScript() {
 }
 
 
+init();
