@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script>
+        function setRem() {
+            var fontSize =100* document.documentElement.clientWidth / 750;
+            document.documentElement.style.fontSize = fontSize + 'px';
+        }
+        setRem();
+        window.onresize =function () {
+            setRem();
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+        }
+        body {
+            font-size: 14px;
+        }
+        .rect {
+            width: 3.75rem;
+            height: 3.75rem;
+            background: red;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="rect">我永远占一半</div>
+</body>
+<script>
+  
+</script>
+</html>

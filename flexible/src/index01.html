@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+        }
+        .rect {
+            width: 980px;
+            height: 980px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <p class="ratio">设备像素比: <span></span></p>
+    <p class="deviceUn">设备独立像素: <span></span></p>
+    <p class="real">设备物理像素: <span></span></p>
+    <div class="rect"></div>
+</body>
+<script>
+    var ratio = window.devicePixelRatio;
+    var deviceWidth = window.screen.width;
+    var realWidth = deviceWidth * ratio;
+    var rect = document.querySelector('.rect');
+    document.querySelector('.ratio span').innerHTML = ratio;
+    document.querySelector('.deviceUn span').innerHTML = deviceWidth;
+    document.querySelector('.real span').innerHTML = realWidth;
+    // layout view  布局视窗 的宽度
+    setInterval(() => {
+        rect.innerHTML = window.innerWidth+'\n'+document.documentElement.clientWidth;
+    }, 100);
+</script>
+</html>
