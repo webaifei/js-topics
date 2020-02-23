@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>希尔 快速排序</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function generateArr(count) {
+        var res = [];
+        for (let i = 0; i < count; i++) {
+            let item = (Math.random() * 1000 | 0)
+            res.push(item)
+        }
+        return res;
+    }
+
+    function quickStort(arr) {
+        if(arr.length <=1) return arr;
+        var middleIndex = Math.floor(arr.length/2);
+        
+        var middle = arr.splice(middleIndex,1)[0];
+        // console.log(arr, middleIndex, middle);
+        // console.log(middle);
+        
+        var left = [],
+            right = [];
+        for(let i = 0; i<arr.length; i++) {
+            if(arr[i]>=middle) {
+                right.push(arr[i]);
+            } else {
+                left.push(arr[i]);
+            }
+        }
+        
+        return quickStort(left).concat(middle).concat(quickStort(right));
+    }
+   
+    var arr = generateArr(10);
+    console.log('排序前：', arr);
+    console.time("快速排序");
+    console.log('快速排序后：', quickStort(arr));
+    console.timeEnd("快速排序");
+
+</script>
+
+</html>

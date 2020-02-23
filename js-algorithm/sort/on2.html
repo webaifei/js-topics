@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>冒泡 选择 插入</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function generateArr(count) {
+        var res = [];
+        for (let i = 0; i < count; i++) {
+            let item = (Math.random() * 1000 | 0)
+            res.push(item)
+        }
+        return res;
+    }
+
+    function bubbleStort(arr) {
+        for (let i = 0; i < arr.length - 1; i++) {
+            // 对i 之前的所有数据 从后向前两两比较
+            // 下面的for执行完成之后，会保证最前面的那个值是最大（小）值
+            // 所以处理arr.length-1个数值之后，最后的那个值也不用比较了
+            for (let j = arr.length - 1; j > i; j--) {
+                if (arr[j] < arr[j - 1]) {
+                    let temp = arr[j];
+                    arr[j] = arr[j - 1];
+                    arr[j - 1] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    function bubbleStort1(arr) {
+        for (let i = arr.length; i > 1; i--) {
+            // 对i 之前的所有数据 从后向前两两比较
+            // 下面的for执行完成之后，会保证最前面的那个值是最大（小）值
+            // 所以处理arr.length-1个数值之后，最后的那个值也不用比较了
+            for (let j = i - 1; j >= 0; j--) {
+                if (arr[j] > arr[j + 1]) {
+                    let temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+        return arr;
+    }
+
+    function selectionStort(arr) {
+        for (let i = 0; i < arr.length; i++) {
+            let findIndex = i;
+            for (let j = i + 1; j < arr.length; j++) {
+                if (arr[findIndex] > arr[j]) {
+                    findIndex = j;
+                }
+            }
+            if (findIndex != i) {
+                let tmp = arr[i];
+                arr[i] = arr[findIndex];
+                arr[findIndex] = tmp;
+            }
+        }
+        return arr;
+    }
+
+    function insertSort() {
+        for (let i = 0; i < lenth - 1; i++) {
+            for (let j = i + 1; j > 0; j--) {
+                if (array[j] < array[j - 1]) {
+                    let temp = array[j - 1];
+                    array[j - 1] = array[j];
+                    array[j] = temp;
+                }
+            }
+        }
+    }
+    var arr = generateArr(10);
+    console.log('排序前：', arr);
+    console.time("冒泡排序");
+    console.log('冒泡排序后：', bubbleStort(arr));
+    console.timeEnd("冒泡排序");
+
+    console.time("选择排序");
+    console.log('选择排序后：', selectionStort(arr));
+    console.timeEnd("选择排序");
+
+    console.time("插入排序");
+    console.log('插入排序后：', selectionStort(arr));
+    console.timeEnd("插入排序");
+</script>
+
+</html>
