@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>闭包</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    debugger;
+    function func() {
+       
+        var name = "ngnice";
+        var str = "";
+        var num =  512*1024*20;
+        for(let i = 0; i< num; i++) {
+            str+="A";
+        }
+        
+        function getName () {
+            console.trace();
+            console.log(name)
+        }
+        return getName; 
+        // function name (name) {
+        //     console.log(name)
+        // } 
+
+    }
+    var getname = func();
+    getname();
+</script>
+
+</html>

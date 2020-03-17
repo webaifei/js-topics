@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>声明提升</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    debugger;
+    function func(name) {
+        console.log(name);// 函数 函数声明提升优先
+        name();// undefined
+        var name = "ngnice";
+        
+        
+        function name () {
+            console.log(name)
+        } 
+        // function name (name) {
+        //     console.log(name)
+        // } 
+
+    }
+    func();
+</script>
+
+</html>

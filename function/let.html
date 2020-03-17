@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>词法环境</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    debugger;
+    var name = "global";
+    function func() {
+        var name = "ngnice";
+        var str = "";
+        if(name) {
+            let name = "inner name";
+            console.log(name);
+        }
+        for (let index = 0; index < 4; index++) {
+            setTimeout(function () {
+                console.log(index);
+            }, 10)
+        }
+
+    }
+    func();
+
+</script>
+
+</html>

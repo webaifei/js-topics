@@ -1,0 +1,47 @@
+<script>
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+ var moveZeroes = function(nums) {
+    let i = 0;
+    let start = 0;
+    let length=nums.length; 
+    while(i<length) {
+        if(nums[start]===0) {
+           let item = nums.splice(start, 1)[0];
+            nums.push(item);
+            // length --;
+        } else {
+            start ++;
+        } 
+        i++;
+        
+    }
+};
+var moveZeroes2 = function(nums) {
+     var j = 0;
+    for(let i = 0; i<nums.length;i++) {
+        if(nums[i]!=0) {
+            nums[j++] = nums[i];
+        }
+    }
+
+    while(j<nums.length) {
+        nums[j++]=0;
+    }
+};
+var arr = [0,0,0,1,0,1];
+console.log(arr);
+console.time("moveZeroes");
+
+moveZeroes(arr);
+console.timeEnd('moveZeroes')
+console.log(arr);
+
+console.time("moveZeroes2");
+
+moveZeroes2(arr);
+console.timeEnd('moveZeroes2')
+
+</script>

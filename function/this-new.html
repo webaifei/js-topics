@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this in new</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    // debugger;
+    function foo(something) {
+        this.a = something;
+    }
+    var obj1 = {
+        foo: foo
+    };
+    var obj2 = {};
+    obj1.foo(2); 
+    console.log(obj1.a); // 2
+    obj1.foo.call(obj2, 3);
+    console.log(obj2.a); // 3
+    var bar = new obj1.foo(4);
+    console.log(obj1.a); // 2 console.log( bar.a ); // 4
+
+    // bind 
+    var newFoo = obj1.foo.bind(obj2)
+    var a = new newFoo(100)
+    console.log(a);
+    console.log(obj2, obj1);
+    // bind invoke
+    newFoo(101);
+    console.log('bind obj2 invoke: ',obj2, obj1);
+    // use call
+    newFoo.call(obj1, 102)
+    console.log('call obj1 invoke: ', obj2, obj1);
+
+</script>
+
+</html>

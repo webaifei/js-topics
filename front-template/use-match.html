@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    var data = {
+        name: 'ngnice',
+        user: {
+            age: 10
+        }
+    }
+    var reg = /\$\{(.*?)\}/g;
+    var tpl = 'hi ${name}, ${user.age}';
+    // console.log(formatter('hi ${name}, ${user.age}', data));
+
+    function getValue(obj, keyPath) {
+        var ret ='';
+        try {
+            ret = eval(obj+'.'+keyPath)
+        } catch (err) {
+
+        }
+        return ret;
+    }
+
+    console.log(tpl.match(reg));
+    
+    
+</script>
+
+</html>

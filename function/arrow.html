@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>箭头函数</title>
+</head>
+<body>
+    
+</body>
+<script>
+    debugger;
+    var log = ()=> {
+        console.log(this.name);
+    }
+    function outer() {
+        var name = "outer name";
+        var log = ()=> {
+            console.log(this.name);
+        }
+        log();
+    }
+    outer();
+    var arr = [1,2,3,3,4];
+    arr.map(item=> {
+        console.log(this);
+        return item*2;
+    })
+    var obj = {
+        name: 'obj name',
+        say() {
+            var log = ()=> {
+                console.log(this.name)
+            }
+            log();
+        }
+    }
+    obj.say()
+</script>
+</html>

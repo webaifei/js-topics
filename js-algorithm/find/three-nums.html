@@ -1,0 +1,49 @@
+<script type="text/javascript">
+// 1. 遍历数组 two = target -item[i](first)
+// 2. 遍历数组 third = two - item[i](second)
+var threeSum = function(nums, target) {
+    let ret = [];
+    const map = {};
+    const twoMap = {};
+    let firstIndex;
+    let secondIndex;
+    let thirdIndex;
+
+    // 遍历nums 
+    for(let i = 0; i<nums.length; i++) {
+        const item = nums[i];
+        map[item] = i;
+    }
+
+    // 遍历nums 记录两数之和 和 第一个数的关联
+    for(let i = 0; i<nums.length; i++) {
+        const item = nums[i];
+        const twoSum =  target - item;
+        twoMap[twoSum] = {
+            index: i,
+            third: item
+        };
+    }
+
+    for (let i = 0; i < nums.length; i++) {
+        // 第一个数
+        const second = nums[i];
+        const twoSum = target - second;
+        
+        // 
+        if(twoMap[twoSum]!=undefined) {
+            // TODO: 兼容重复
+            firstIndex = twoMap[twoSum].index;
+            const first = target - twoMap[twoSum].third - second;
+            if(map[first] && (i!=firstIndex && firstIndex != map[first])) {
+                ret = [firstIndex, map[first], i]
+            }
+
+        }
+        
+    }
+    
+    return ret;
+};
+console.log(threeSum([2,7,11,1,1,2,8,7], 9))
+</script>

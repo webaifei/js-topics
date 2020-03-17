@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    debugger;
+
+    function run() {
+        function show() {
+            console.log(show.prototype)
+            console.log(this.name);
+        }
+        var name = "global name";
+        var obj = {
+            name: "obj name",
+            log() {
+                console.log(this.name);
+            }
+        }
+        var s = new show();
+
+        show();
+        show.call(obj)
+        show.apply(obj)
+        show.call(null);
+        show.apply(null);
+
+        show.bind(obj)();
+
+    }
+    run();
+</script>
+
+</html>

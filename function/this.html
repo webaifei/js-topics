@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>this是谁</title>
+</head>
+
+<body>
+
+</body>
+<script>
+//    "use strict";
+    debugger;
+    var name = "global";
+    function func() {
+        console.log(this);
+        var name = "ngnice";
+        var str = "";
+        if(name) {
+            let name = "inner name";
+            console.log(name);
+        }
+        
+        function getName (caller) {
+            console.log(name)
+            console.log(caller,'this.name', this.name)
+            setTimeout(function () {
+                console.log('setTimeout-->this.name', this.name)
+            }, 200)
+            eval("console.log(this.name)");
+        }
+        return getName; 
+
+    }
+    var getname = func();
+    var utils = {
+        name: "utitls name",
+        getname: getname
+    }
+    getname();
+    utils.getname();
+    var aliasName;
+    (aliasName=utils.getname)('alias')
+</script>
+
+</html>
