@@ -9,6 +9,6 @@
     "start": "yarn run start-a &  yarn run start-b"
   },
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.17.3"
   }
 }
